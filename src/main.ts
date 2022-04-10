@@ -1,30 +1,22 @@
+import {Post} from './model/post';
+import {Author} from './model/author';
+import {Comment} from './model/comment';
+
+class Api {
+    postsSuffix: string = 'posts';
+
+constructor(public readonly apiUrl: string) {}
+
+public getPostsUrl(): string {
+    return `${this.apiUrl}/${this.postsSuffix}`
+    }
+}
+
 const apiUrl: string = 'https://jsonplaceholder.typicode.com';
 
 const postsUrl: string = apiUrl + '/posts';
 const commentsUrl: string = `${apiUrl}/comments`;
 const usersUrl: string = `${apiUrl}/users`;
-
-interface Author {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-}
-
-interface Post {
-  id: number;
-  userId: number;
-  title: string;
-  body: string;
-}
-
-interface Comment {
-  postId: number;
-  id: number;
-  name: string;
-  email: string;
-  body: string;
-}
 
 async function setAuthor(authorId: number) {
   const userUrl = `${usersUrl}/${authorId}`;
